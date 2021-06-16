@@ -10,7 +10,6 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using System.Linq;
 
 [ExecuteAlways]
 public class PhysicalSimulatorWindow : EditorWindow
@@ -51,16 +50,16 @@ public class PhysicalSimulatorWindow : EditorWindow
     private void OnGUI()
     {
         EditorGUILayout.PropertyField(propObjectsToSimulate);
-        using (new EditorGUI.DisabledScope(Selection.count == 0))
-        {
-            if (GUILayout.Button("Add Selection"))
-            {
-                foreach (var obj in Selection.gameObjects)
-                {
-                    objectsToSimulate.Add(obj);
-                }
-            }
-        }
+        // using (new EditorGUI.DisabledScope(Selection.count == 0))
+        // {
+        //     if (GUILayout.Button("Add Selection"))
+        //     {
+        //         foreach (var obj in Selection.gameObjects)
+        //         {
+        //             objectsToSimulate.Add(obj);
+        //         }
+        //     }
+        // }
 
         using (new EditorGUILayout.HorizontalScope())
         {
