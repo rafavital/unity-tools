@@ -11,6 +11,7 @@ This tool will clean any (one) selected object in the hierarchy window and it's 
 Select the object you want to clean
 
 Image of the inspector window before the cleaning:
+
 ![Image showing the project's hierachy and two inspector windows, one showing the Parent's components and the other showing the child's components.](./img/script_cleaner_inspector.png)
 
 1. The parent in the hierarchy
@@ -79,4 +80,36 @@ In order to use the recently recorded clip add an Animator Controller to the obj
 
 ![](img/animation_rec_ac.png)
 
-## Physics Simulator
+## Physical Simulator
+
+This tool allow's the user to run Unity's physics simulation inside the editor without having to press play. Thus allowing the user to test the physics simulation or place objects organically using physics for example.
+
+### Step 1
+
+Open the tool's window in the top menu of the editor _"Automation"_ > _"Physical Simulator"_
+
+### Step 2
+
+Fill the "Objects to Simulate" list with the objects you want to simulate.
+
+![](img/physical_simulator_window.png)
+
+### Step 3
+
+#### Start Simulation
+
+Press the play button to start simulating
+
+![Physical simulator play button](img/physical_simulator_play_btn.png)
+
+#### Stop Simulation
+
+Press the stop button to stop simulating
+
+![Physical simulator stop button](img/physical_simulator_stop_btn.png)
+
+### Step 4
+
+If you're not satisfied with the end of the simulation or want to modify the initial setup you can press the "undo" button to reset the object's transforms to how they were prior to the simulation.
+
+![Physical simulator undo button](img/physical_simulator_undo_btn.png)
