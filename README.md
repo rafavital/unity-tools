@@ -15,3 +15,7 @@ This tool helps to record changes to an object's transform and save it as an ani
 ### Physics Simulator
 
 This tool allow's the user to run Unity's physics simulation inside the editor without having to press play.
+
+## How to Use
+
+For instructions on how to use the tools [see the documentation](https://github.com/rafavital/unity-tools/blob/docs/HOW_TO_USE.md)
