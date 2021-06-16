@@ -33,6 +33,7 @@ public class AnimationRecWindow : EditorWindow
     private double lastFrameTime = 0.0f;
     private double startedRecordingTime = 0.0f;
     private Transform selectedTransform;
+    private bool debugMessages;
 
     [MenuItem("Tools/Animation Rec")]
     public static void OpenWindow()
@@ -84,7 +85,12 @@ public class AnimationRecWindow : EditorWindow
             deleteRecordKey = (KeyCode)EditorGUILayout.EnumPopup("Delete Recording Key:", deleteRecordKey);
             deleteRecordKey = InputControls.KeyCodeField(EditorGUILayout.GetControlRect(), deleteRecordKey);
         }
+
+        debugMessages = EditorGUILayout.Toggle("Show Debug Messages", debugMessages);
+
         #endregion
+
+        EditorGUILayout.Space(20);
 
         EditorGUILayout.PropertyField(propRecordFrequency);
         recordFrequency = Mathf.Max(0.01f, recordFrequency);
@@ -98,7 +104,14 @@ public class AnimationRecWindow : EditorWindow
             EditorGUILayout.LabelField("Save Path", savePath);
             if (GUILayout.Button("Select"))
             {
-                savePath = EditorUtility.OpenFolderPanel("Destination Folder", savePath, "");
+                //adapted from https://gist.github.com/mstevenson/4386682
+
+                var tmpSavePath = EditorUtility.OpenFolderPanel("Destination Folder", savePath, "");
+                
+                if (tmpSavePath.StartsWith(Application.dataPath)) 
+                {
+			        savePath = "Assets" + tmpSavePath.Substring(Application.dataPath.Length) + "/";
+		        }
             }
         }
 
@@ -168,7 +181,8 @@ public class AnimationRecWindow : EditorWindow
         if (selectedTransform == null)
             return;
 
-        Debug.Log("começou");
+        if (debugMessages)
+            Debug.Log("começou");
 
         startedRecordingTime = EditorApplication.timeSinceStartup;
         transformRecorder = new TransformRecordObject(selectedTransform.name, selectedTransform);
@@ -188,7 +202,10 @@ public class AnimationRecWindow : EditorWindow
             EditorUtility.DisplayDialog("Cancel Recording", "Recording deleted", "Continue", "");
             return;
         }
-        Debug.Log("parou");
+
+        if (debugMessages)
+            Debug.Log("parou");
+
         isRecording = false;
         ExportAnimation();
     }
